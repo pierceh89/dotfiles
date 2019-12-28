@@ -12,8 +12,8 @@ brew upgrade
 # Save Homebrew’s installed location.
 BREW_PREFIX=$(brew --prefix)
 
-# Install `wget` with IRI support.
-brew install wget --with-iri
+# Install `wget`
+brew install wget 
 
 # Install more recent versions of some macOS tools.
 brew install neovim
