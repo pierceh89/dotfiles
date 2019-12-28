@@ -1,10 +1,10 @@
 # If you come from bash you might have to change your $PATH.
-export GOPATH=/Users/hgan/go
+export GOPATH=$HOME/go
 
 export PATH=$GOPATH/bin:$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/hgan/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -106,7 +106,7 @@ alias rc='source ~/.zshrc'
 alias hg='history | grep'
 
 # manage dotfiles
-alias config='git --git-dir=$HOME/.config/ --work-tree=$HOME'
+alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 export EDITOR=/usr/local/bin/nvim
 
