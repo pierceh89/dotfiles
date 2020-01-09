@@ -105,8 +105,17 @@ alias gpo='git push origin'
 alias rc='source ~/.zshrc'
 alias hg='history | grep'
 
+# kubenetes
+alias kub='kubectl'
+
 # manage dotfiles
 alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+# import alias set
+USF_ALIAS=$HOME/.config/usf_alias.zsh
+if [[ -f "$USF_ALIAS" ]]; then
+	source $USF_ALIAS
+fi
 
 export EDITOR=/usr/local/bin/nvim
 

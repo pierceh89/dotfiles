@@ -17,6 +17,8 @@ brew install wget
 
 # Install more recent versions of some macOS tools.
 brew install neovim
+brew install ctags-exuberant
+brew install gotags
 
 # Install other useful binaries.
 brew install ack
