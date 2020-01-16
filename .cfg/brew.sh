@@ -20,6 +20,9 @@ brew install neovim
 brew install ctags-exuberant
 brew install gotags
 
+# Install Scala Repl
+sudo sh -c '(echo "#!/usr/bin/env sh" && curl -L https://github.com/lihaoyi/Ammonite/releases/download/2.0.1/2.13-2.0.1) > /usr/local/bin/amm && chmod +x /usr/local/bin/amm' && amm
+
 # Install other useful binaries.
 brew install ack
 brew install git

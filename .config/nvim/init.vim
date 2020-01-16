@@ -19,6 +19,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-surround' " quoting/parenthesizing made simple
 Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-repeat'
 
 " Language
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -29,13 +30,16 @@ call plug#end()
 " ==============================================================
 " BASIC SETTINGS
 " ==============================================================
-
+set nocompatible
 set nu
 set autoindent
-set smartindent
 set hlsearch
 set cursorline
 set encoding=utf-8
+
+set smartindent
+set tabstop=4
+set shiftwidth=4
 
 " Unified color scheme
 let g:seoul256_background=235
