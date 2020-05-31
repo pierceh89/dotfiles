@@ -24,6 +24,9 @@ Plug 'tpope/vim-repeat'
 " Language
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
+" Vimwiki
+Plug 'vimwiki/vimwiki'
+
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -40,6 +43,85 @@ set encoding=utf-8
 set smartindent
 set tabstop=4
 set shiftwidth=4
+
+" vimwiki related options
+filetype plugin on
+syntax on
+
+let wiki = {}
+let wiki.path = '~/pierceh89.github.io/_wiki/'
+let wiki.ext = '.md'
+
+let g:vimwiki_list = [wiki]
+" 아무것도 숨기지 않도록 설정
+let g:vimwiki_conceallevel = 0 
+let g:vimwiki_table_mappings = 0
+let g:md_modify_disabled = 0
+
+" updated column을 자동으로 채워주는 코드
+function! LastModified()
+    if g:md_modify_disabled
+        return
+    endif
+    if &modified
+        " echo('markdown updated time modified')
+        let save_cursor = getpos(".")
+        let n = min([10, line("$")])
+        keepjumps exe '1,' . n . 's#^\(.\{,10}updated\s*: \).*#\1' .
+            \ strftime('%Y-%m-%d %H:%M:%S +0900') . '#e'
+        call histdel('search', -1)
+        call setpos('.', save_cursor)
+    endif
+endfun
+
+" 새로운 문서 파일을 만들었을 때 기본 형식이 입력되도록 한다
+function! NewTemplate()
+
+    let l:wiki_directory = v:false
+
+    for wiki in g:vimwiki_list
+        if expand('%:p:h') . '/' == wiki.path
+            let l:wiki_directory = v:true
+            break
+        endif
+    endfor
+
+    if !l:wiki_directory
+        return
+    endif
+
+    if line("$") > 1
+        return
+    endif
+
+    let l:template = []
+    call add(l:template, '---')
+    call add(l:template, 'layout  : wiki')
+    call add(l:template, 'title   : ')
+    call add(l:template, 'summary : ')
+    call add(l:template, 'date    : ' . strftime('%Y-%m-%d %H:%M:%S +0900'))
+    call add(l:template, 'updated : ' . strftime('%Y-%m-%d %H:%M:%S +0900'))
+    call add(l:template, 'tags    : ')
+    call add(l:template, 'toc     : true')
+    call add(l:template, 'public  : true')
+    call add(l:template, 'parent  : ')
+    call add(l:template, 'latex   : false')
+    call add(l:template, '---')
+    call add(l:template, '* TOC')
+    call add(l:template, '{:toc}')
+    call add(l:template, '')
+    call add(l:template, '# ')
+    call setline(1, l:template)
+    execute 'normal! G'
+    execute 'normal! $'
+
+    echom 'new wiki page has created'
+endfunction
+
+augroup vimwikiauto
+	autocmd BufWritePre *.md call LastModified()
+	autocmd BufRead,BufNewFile *.md call NewTemplate()
+augroup END
 
 " Unified color scheme
 let g:seoul256_background=235
