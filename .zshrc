@@ -1,7 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 export GOPATH=$HOME/go
 
-export PATH=$GOPATH/bin:$HOME/bin:/usr/local/bin:$PATH
+export PATH=$GOPATH/bin:$HOME/bin:/usr/local/bin:$HOME/Kui-darwin-x64:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -70,7 +70,8 @@ export UPDATE_ZSH_DAYS=30
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git
-  fasd)
+  fasd
+  kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -93,6 +94,10 @@ source $ZSH/oh-my-zsh.sh
 
 # Custom alias
 
+# adoptopenjdk
+alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`"
+alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`"
+
 # vim
 alias vim="nvim"
 alias vi="nvim"
@@ -111,7 +116,7 @@ alias rc='source ~/.zshrc'
 alias hg='history | grep'
 
 # kubenetes
-alias kub='kubectl'
+alias d='docker'
 
 # manage dotfiles
 alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'

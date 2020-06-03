@@ -7,6 +7,7 @@ Plug 'junegunn/seoul256.vim'
 
 " Interface
 Plug 'vim-airline/vim-airline'
+Plug 'mhinz/vim-startify'
 
 " Browsing
 Plug 'scrooloose/nerdtree'
@@ -23,9 +24,10 @@ Plug 'tpope/vim-repeat'
 
 " Language
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'udalov/kotlin-vim'
 
 " Vimwiki
-Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki', { 'tag': 'v2.4.1' }
 
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
@@ -49,7 +51,7 @@ filetype plugin on
 syntax on
 
 let wiki = {}
-let wiki.path = '~/pierceh89.github.io/_wiki/'
+let wiki.path = '~/dev/pierceh89.github.io/_wiki/'
 let wiki.ext = '.md'
 
 let g:vimwiki_list = [wiki]
@@ -57,6 +59,8 @@ let g:vimwiki_list = [wiki]
 let g:vimwiki_conceallevel = 0 
 let g:vimwiki_table_mappings = 0
 let g:md_modify_disabled = 0
+" vimwiki 설정이 markdown 설정을 침투하지 않게 하기
+let g:vimwiki_global_ext = 0
 
 " updated column을 자동으로 채워주는 코드
 function! LastModified()
@@ -119,8 +123,8 @@ function! NewTemplate()
 endfunction
 
 augroup vimwikiauto
-	autocmd BufWritePre *.md call LastModified()
-	autocmd BufRead,BufNewFile *.md call NewTemplate()
+	autocmd BufWritePre *wiki/*.md call LastModified()
+	autocmd BufRead,BufNewFile *wiki/*.md call NewTemplate()
 augroup END
 
 " Unified color scheme
@@ -165,6 +169,17 @@ let g:tagbar_type_go = {
 	\ 'ctagsargs' : '-sort -silent'
 \ }
 
+" ctags for markdown
+let g:tagbar_type_markdown = {
+    \ 'ctagstype' : 'markdown',
+    \ 'kinds' : [
+            \ 'h:headings',
+            \ 'l:links',
+            \ 'i:images'
+        \ ],
+    \ "sort" : 0
+\ }
+
 " ==============================================================
 " Mappings
 " ==============================================================
@@ -192,6 +207,18 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" vimwiki mappings
+" \ww to open vimwiki index
+nmap <LocalLeader>ww <Plug>VimwikiIndex
+" \wt for markdown table
+" nmap <LocalLeader>wt :VimwikiTable<CR>
+
+" F4 키를 누르면 커서가 놓인 단어를 위키에서 검색한다.
+nnoremap <F4> :execute "VWS /" . expand("<cword>") . "/" <Bar> :lopen<CR>
+
+" Shift F4 키를 누르면 현재 문서를 링크한 모든 문서를 검색한다
+nnoremap <S-F4> :execute "VWB" <Bar> :lopen<CR>
 
 " new split panes to right and bottom
 set splitbelow
