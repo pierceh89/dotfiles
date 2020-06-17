@@ -21,6 +21,8 @@ Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-surround' " quoting/parenthesizing made simple
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-commentary'
+Plug 'vim-scripts/ReplaceWithRegister'
 
 " Language
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
