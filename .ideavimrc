@@ -1,0 +1,6 @@
+source ~/.config/nvim/init.vim
+
+set commentary
+set surround
+set textobj-entire
+set ReplaceWithRegister
