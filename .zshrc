@@ -1,7 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 export GOPATH=$HOME/go
 
-export PATH=$GOPATH/bin:$HOME/bin:/usr/local/bin:$HOME/Kui-darwin-x64:$PATH
+export PATH=$HOME/sonar-scanner/bin:$GOPATH/bin:$HOME/bin:/usr/local/bin:$HOME/Kui-darwin-x64:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"

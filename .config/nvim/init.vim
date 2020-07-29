@@ -52,9 +52,9 @@ set shiftwidth=4
 filetype plugin on
 syntax on
 
-let wiki = {}
-let wiki.path = '~/dev/pierceh89.github.io/_wiki/'
-let wiki.ext = '.md'
+let g:wiki = {}
+let g:wiki.path = '/Users/diego/dev/pierceh89.github.io/_wiki/'
+let g:wiki.ext = '.md'
 
 let g:vimwiki_list = [wiki]
 " 아무것도 숨기지 않도록 설정
@@ -85,7 +85,7 @@ function! NewTemplate()
 
     let l:wiki_directory = v:false
 
-    for wiki in g:vimwiki_list
+     for wiki in g:vimwiki_list
         if expand('%:p:h') . '/' == wiki.path
             let l:wiki_directory = v:true
             break
@@ -107,7 +107,7 @@ function! NewTemplate()
     call add(l:template, 'summary : ')
     call add(l:template, 'date    : ' . strftime('%Y-%m-%d %H:%M:%S +0900'))
     call add(l:template, 'updated : ' . strftime('%Y-%m-%d %H:%M:%S +0900'))
-    call add(l:template, 'tags    : ')
+    call add(l:template, 'tag     : ')
     call add(l:template, 'toc     : true')
     call add(l:template, 'public  : true')
     call add(l:template, 'parent  : ')
