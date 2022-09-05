@@ -182,6 +182,15 @@ let g:tagbar_type_markdown = {
     \ "sort" : 0
 \ }
 
+" ctags for vimwiki
+let g:tagbar_type_vimwiki = {
+    \ 'ctagstype' : 'vimwiki',
+    \ 'sort': 0,
+    \ 'kinds' : [
+        \ 'h:Heading'
+    \ ]
+\ }
+
 " ==============================================================
 " Mappings
 " ==============================================================
@@ -226,3 +235,5 @@ nnoremap <S-F4> :execute "VWB" <Bar> :lopen<CR>
 set splitbelow
 set splitright
 
+"Get the 2-space YAML as the default when hit carriage return after the colon
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab

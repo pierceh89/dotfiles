@@ -1,7 +1,10 @@
 # If you come from bash you might have to change your $PATH.
 export GOPATH=$HOME/go
+export SPARK_HOME=/usr/local/spark
+export SCALA_HOME=/usr/local/Cellar/scala/2.13.6
+export HADOOP_HOME=/usr/local/hadoop
 
-export PATH=$HOME/sonar-scanner/bin:$GOPATH/bin:$HOME/bin:/usr/local/bin:$HOME/Kui-darwin-x64:$PATH
+export PATH=$HADOOP_HOME/bin:$SCALA_HOME/bin:$SPARK_HOME/bin:$HOME/sonar-scanner/bin:$GOPATH/bin:$HOME/bin:/usr/local/bin:$HOME/Kui-darwin-x64:/usr/local/sbin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -60,7 +63,6 @@ export UPDATE_ZSH_DAYS=30
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
-
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
@@ -69,9 +71,19 @@ export UPDATE_ZSH_DAYS=30
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git
+plugins=(
+  git
   fasd
-  kubectl)
+  kubectl
+)
+
+# kubectl  prompt
+function kubectl_prompt_info() {
+  echo "<k8s:$(kccc)>"
+}
+if [ "$SHOW_K8S_PROMPT" != false ]; then
+  RPROMPT='$(kubectl_prompt_info)'"$RPROMPT"
+fi
 
 source $ZSH/oh-my-zsh.sh
 
@@ -115,18 +127,40 @@ alias gpo='git push origin'
 alias rc='source ~/.zshrc'
 alias hg='history | grep'
 
-# kubenetes
+# docker & docker-machine
 alias d='docker'
+
+## dockerstart / dockerstop 함수 등록
+function dockerstart(){
+    if docker-machine status default | grep "Running" &> /dev/null
+    then
+        eval "$(docker-machine env default)"
+    else
+        docker-machine start default && eval "$(docker-machine env default)"
+    fi
+}
+ 
+function dockerstop(){
+    docker-machine stop default
+}
+ 
+## 새로운 터미널 열때 env 자동적용
+if docker-machine status default | grep "Running" &> /dev/null
+then
+    eval "$(docker-machine env default)"
+fi
+# end of docker
 
 # manage dotfiles
 alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-# import alias set
+export EDITOR=/usr/local/bin/nvim
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# import usf alias set
 USF_ALIAS=$HOME/.config/usf_alias.zsh
 if [[ -f "$USF_ALIAS" ]]; then
 	source $USF_ALIAS
 fi
-
-export EDITOR=/usr/local/bin/nvim
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
