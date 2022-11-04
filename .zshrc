@@ -6,6 +6,9 @@ export HADOOP_HOME=/usr/local/hadoop
 
 export PATH=$HADOOP_HOME/bin:$SCALA_HOME/bin:$SPARK_HOME/bin:$HOME/sonar-scanner/bin:$GOPATH/bin:$HOME/bin:/usr/local/bin:$HOME/Kui-darwin-x64:/usr/local/sbin:$PATH
 
+# Secret
+source ~/.secrets
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -144,11 +147,6 @@ function dockerstop(){
     docker-machine stop default
 }
  
-## 새로운 터미널 열때 env 자동적용
-if docker-machine status default | grep "Running" &> /dev/null
-then
-    eval "$(docker-machine env default)"
-fi
 # end of docker
 
 # manage dotfiles

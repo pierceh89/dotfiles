@@ -70,3 +70,4 @@ function changeInput()
 end
 
 hs.hotkey.bind({"ctrl"}, 33, changeInput)
+

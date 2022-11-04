@@ -2,6 +2,7 @@
 컴퓨터를 바꿨을때 개발 환경을 한번에 구축하려고 관리하는중 
 
 ## History
+- 2022-11-03 : brew 스크립트 업데이트, inputsource_aurora 업데이트, Jekyll 관련 설정 추가
 - 2022-10-26 : hammerspoon 설정 추가
 - 2020-06-04 : vimwiki, k8s 플러그인 추가
 - 2020-06-01 : hammerspoon 스크립트 추가
@@ -41,7 +42,6 @@ rm -rf fonts
 
 ### 2. Homebrew
 맥에서 사용하는 패키지 관리 프로그램   
-명령어 도구를 먼저 설치해야한다. `xcode-select --install`  
 brew 설치 `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`  
 
 ### 3. IntelliJ Idea
@@ -58,38 +58,6 @@ python3로 virtual env를 구성하고 jupyter notebook을 설치한다. 데이�
 여전히 배우는 중인 vim. 블로그를 할 때는 vim을 사용하고 일할 때는 IdeaVim을 사용하는데 설정이 공유되서 불편함없이 사용중이다. (거의 기초적인 기능만 사용한다는 뜻이다) 
 
 ### 7. Hammerspoon
-
-### 8. Sublime Text
-텍스트 편집기(1) https://www.sublimetext.com  
-
-### 9. Visual Studio Code
-텍스트 편집기(2) https://code.visualstudio.com/Download  
-
-### SpaceVim
-NeoVim 플러그인 중 유용하고 인기있는 것들만 모아서 패키지로 제공해주는 플러그인 (Vim에 익숙하지 않은 상태에서 설치해보니 오히려 더 어려운거 같아서 설치했다가 지웠다)  
-```
-#install
-curl -sLf https://spacevim.org/install.sh | bash
-
-## uninstall
-curl -sLf https://spacevim.org/install.sh | bash -s -- --uninstall
-rm -rf ~/.SpaceVim*
-```
-
-## Etc
-
-### Aerial - Apple TV Aerial Views Screen Saver
-이쁜 화면보호기 https://github.com/JohnCoates/Aerial    
-`brew cask install aerial`  
-
-### Alfred 4 for Mac
-생산성 높여주는 앱 https://www.alfredapp.com  
-
-Cmd + Space를 핫키로 설정하는 방법  
-먼저 Spotlight의 핫키 설정을 제거하면, 앱에서 핫키로 지정이 가능하다.  
-System > Keyboard > Hot key > Spotlight > disable Spotlight hot key  
-
-### Hammerspoon
 macOS 전용 자동화 툴이다. Lua script를 사용하여 System API를 호출할 수 있다. 자주 쓰이는 기능은 `Spoon`이라는 플러그인 형태로 제공된다. 이 툴을 이용해서 `Spectacle` 기능을 다시 작성했다. 그 외 유용한 기능을 추가해서 사용하고 있다.
 
 - Caffeine (잠자기 모드 방지)
@@ -99,8 +67,35 @@ macOS 전용 자동화 툴이다. Lua script를 사용하여 System API를 호�
 - Spectacle (윈도우 이동&리사이징)
 - Vim에서 입력 모드 나오면 영문으로 자동 변환
 
+### 8. Visual Studio Code
+텍스트 편집기 https://code.visualstudio.com/Download
+
+### 9. Ruby
+Jekyll 블로그
+```sh
+rbenv install 3.0.4
+rbenv global 3.0.4
+cd [BLOG_PATH]
+gen install bundler
+bundler install
+# M1 맥북에서 빌드 실패하는 경우
+gem install eventmachine -v '1.2.7' -- --with-ldflags="-Wl,-undefined,dynamic_lookup"
+```
+
+## Etc
+
+### Alfred 5 for Mac
+생산성 높여주는 앱 https://www.alfredapp.com  
+
+Cmd + Space를 핫키로 설정하는 방법  
+먼저 Spotlight의 핫키 설정을 제거하면, 앱에서 핫키로 지정이 가능하다.  
+System > Keyboard > Hot key > Spotlight > disable Spotlight hot key  
+
 ### jq
-커맨드라인에서 json을 처리할 수 있는 프로그램인데 사용법만 잘 배우면 아주 유용하게 사용할 수 있을 것 같다.
+커맨드라인에서 json을 처리할 수 있는 프로그램
+
+### yq
+커맨드라인에서 yaml을 처리할 수 있는 프로그램
 
 ## 참고 사이트
 - [본격macOS에 개발환경 구축하기](https://subicura.com/2017/11/22/mac-os-development-environment-setup.html)
