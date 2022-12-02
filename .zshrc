@@ -132,20 +132,6 @@ alias hg='history | grep'
 
 # docker & docker-machine
 alias d='docker'
-
-## dockerstart / dockerstop 함수 등록
-function dockerstart(){
-    if docker-machine status default | grep "Running" &> /dev/null
-    then
-        eval "$(docker-machine env default)"
-    else
-        docker-machine start default && eval "$(docker-machine env default)"
-    fi
-}
- 
-function dockerstop(){
-    docker-machine stop default
-}
  
 # end of docker
 
