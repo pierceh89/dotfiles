@@ -28,12 +28,12 @@ Install:andUse("Hammer",
 )
 
 -- Caffeine
-Install:andUse("Caffeine", {
-	start = true,
-	hotkeys = {
-	  toggle = { hyper, "c" }
-	}
-})
+-- Install:andUse("Caffeine", {
+-- 	start = true,
+-- 	hotkeys = {
+-- 	  toggle = { hyper, "c" }
+-- 	}
+-- })
 
 -- KSheet (Displaying keyboard shortcuts)
 Install:andUse("KSheet", {
@@ -42,21 +42,21 @@ Install:andUse("KSheet", {
 }})
 
 -- Pop-up translation
-local wm=hs.webview.windowMasks
-Install:andUse("PopupTranslateSelection", {
-	config = {
-		popup_style = wm.utility|wm.HUD|wm.titled|wm.closable|wm.resizable,
-	},
-	hotkeys = {
-		translate_to_en = { hyper, "e" },
-		translate_to_ko = { hyper, "k" }
-	}
-})
+-- local wm=hs.webview.windowMasks
+-- Install:andUse("PopupTranslateSelection", {
+-- 	config = {
+-- 		popup_style = wm.utility|wm.HUD|wm.titled|wm.closable|wm.resizable,
+-- 	},
+-- 	hotkeys = {
+-- 		translate_to_en = { hyper, "e" },
+-- 		translate_to_ko = { hyper, "k" }
+-- 	}
+-- })
 
 -- inputsource_aurora
 require('modules.inputsource_aurora')
 -- Spectacle replacement
-require('modules.spectacle')
+-- require('modules.spectacle')
 
 -- ctrl + ']'를 누르면 입력 소스를 영문으로 변경 후 esc 입력한다.
 local english = "com.apple.keylayout.ABC"

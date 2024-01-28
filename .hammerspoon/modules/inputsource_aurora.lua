@@ -17,6 +17,7 @@ function enable_show()
     hs.fnutils.each(hs.screen.allScreens(), function(scr)
         local frame = scr:fullFrame()
 		-- m1 macbook menubar height가 다르기 때문에 동적으로 설정
+        -- 설정 > 데스크탑 및 Dock > 자동으로 Dock 가리기와 보기 설정 필요
         local box_height = frame.h - scr:frame().h
 
         local menubar_overlay = newBox()

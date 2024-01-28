@@ -1,13 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 export GOPATH=$HOME/go
-export SPARK_HOME=/usr/local/spark
-export SCALA_HOME=/usr/local/Cellar/scala/2.13.6
-export HADOOP_HOME=/usr/local/hadoop
 
-export PATH=$HADOOP_HOME/bin:$SCALA_HOME/bin:$SPARK_HOME/bin:$HOME/sonar-scanner/bin:$GOPATH/bin:$HOME/bin:/usr/local/bin:$HOME/Kui-darwin-x64:/usr/local/sbin:$PATH
-
-# Secret
-source ~/.secrets
+export PATH=$GOPATH/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -81,12 +75,12 @@ plugins=(
 )
 
 # kubectl  prompt
-function kubectl_prompt_info() {
-  echo "<k8s:$(kccc)>"
-}
-if [ "$SHOW_K8S_PROMPT" != false ]; then
-  RPROMPT='$(kubectl_prompt_info)'"$RPROMPT"
-fi
+# function kubectl_prompt_info() {
+#   echo "<k8s:$(kccc)>"
+# }
+# if [ "$SHOW_K8S_PROMPT" != false ]; then
+#   RPROMPT='$(kubectl_prompt_info)'"$RPROMPT"
+# fi
 
 source $ZSH/oh-my-zsh.sh
 
@@ -110,8 +104,8 @@ source $ZSH/oh-my-zsh.sh
 # Custom alias
 
 # adoptopenjdk
-alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`"
-alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`"
+# alias j11="export JAVA_HOME=`/usr/libexec/java_home -v 11`"
+# alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`"
 
 # vim
 alias vim="nvim"
@@ -143,8 +137,8 @@ export EDITOR=/usr/local/bin/nvim
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-# import usf alias set
-USF_ALIAS=$HOME/.config/usf_alias.zsh
-if [[ -f "$USF_ALIAS" ]]; then
-	source $USF_ALIAS
-fi
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
